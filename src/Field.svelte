@@ -1,7 +1,8 @@
 <script>
     import {debouncer} from "./debounce";
-    import {spring} from "svelte/motion";
+    import {tweened} from "svelte/motion";
     import {int} from "./magic.js";
+    import {elasticOut} from "svelte/easing";
 
     export let input_value;
     export let calculated_value;
@@ -19,7 +20,10 @@
         });
     }
 
-    let animated = spring(0);
+    let animated = tweened(0, {
+        duration: 1000,
+        easing: elasticOut,
+    });
 
     $: {
         animated.set(int(calculated_value));
@@ -30,6 +34,7 @@
     div.grouped {
         display: inline-block;
     }
+
     input {
         color: darkred;
     }
