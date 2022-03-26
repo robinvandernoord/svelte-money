@@ -1,6 +1,7 @@
 <script>
     import {magic, nerdamer} from './magic';
     import Field from "./Field.svelte";
+    import {spring} from "svelte/motion";
 
     /**
      * @param question
@@ -35,7 +36,7 @@
     dagen_per_week = 5;
     uren_per_week = undefined;
 
-    maand = 2000;
+    uur = 15;
 
     $: { // update on each var change
         let args = {
@@ -50,7 +51,7 @@
             jaar,
         };
         try {
-            feedback = 'calculating...'
+            feedback = 'calculating...';
             console.log(args);
             magic(args, rules);
 
@@ -74,24 +75,27 @@
 
 </script>
 
-<Field grouped="1" bind:input_value={uren_per_dag} bind:calculated_value={_uren_per_dag} name="Uur per dag" />
-<Field grouped="1" bind:input_value={uren_per_week} bind:calculated_value={_uren_per_week} name="Uur per week" />
-<Field grouped="1" bind:input_value={dagen_per_week} bind:calculated_value={_dagen_per_week} name="Dagen per week" />
-
-<hr />
-
-<Field grouped="1" bind:input_value={uur} bind:calculated_value={_uur} name="Per Uur" />
-<!--<Field bind:input_value={dag} bind:calculated_value={_dag} name="Per Dag" />-->
-<!--<Field bind:input_value={week} bind:calculated_value={_week} name="Per Week" />-->
-<Field grouped="1" bind:input_value={maand} bind:calculated_value={_maand} name="Per Maand" />
-<Field grouped="1" bind:input_value={jaar} bind:calculated_value={_jaar} name="Per Jaar" />
-
-<!-- todo : meedere kolommen en dan optellen-->
-
-<p>{feedback}</p>
-
 <style>
     p {
         color: darkred;
     }
 </style>
+
+<div>
+    <Field grouped="1" bind:input_value={uren_per_dag} bind:calculated_value={_uren_per_dag} name="Uur per dag" />
+    <Field grouped="1" bind:input_value={uren_per_week} bind:calculated_value={_uren_per_week} name="Uur per week" />
+    <Field grouped="1" bind:input_value={dagen_per_week} bind:calculated_value={_dagen_per_week}
+           name="Dagen per week" />
+
+    <hr />
+
+    <Field grouped="1" bind:input_value={uur} bind:calculated_value={_uur} name="Per Uur" />
+    <!--<Field bind:input_value={dag} bind:calculated_value={_dag} name="Per Dag" />-->
+    <!--<Field bind:input_value={week} bind:calculated_value={_week} name="Per Week" />-->
+    <Field grouped="1" bind:input_value={maand} bind:calculated_value={_maand} name="Per Maand" />
+    <Field grouped="1" bind:input_value={jaar} bind:calculated_value={_jaar} name="Per Jaar" />
+</div>
+
+<!-- todo : meedere kolommen en dan optellen-->
+
+<p>{feedback}</p>

@@ -1,5 +1,7 @@
 <script>
     import {debouncer} from "./debounce";
+    import {spring} from "svelte/motion";
+    import {int} from "./magic.js";
 
     export let input_value;
     export let calculated_value;
@@ -16,6 +18,12 @@
             input_value = _input_value;
         });
     }
+
+    let animated = spring(0);
+
+    $: {
+        animated.set(int(calculated_value));
+    }
 </script>
 
 <style>
@@ -31,6 +39,7 @@
     <label for="{name}">{name}</label>
     <!---->
     <input id="{name}"
+           type="number"
            bind:value={_input_value}
-           placeholder="{calculated_value}">
+           placeholder="{Math.round($animated)}">
 </div>

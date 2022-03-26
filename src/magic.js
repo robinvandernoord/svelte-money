@@ -5,9 +5,13 @@ patch_unicorn(); // add string.formatUnicorn
 
 export let nerdamer = _nerdamer;
 
-export function round(n, d){
-    const f = 10 ** d
+export function round(n, d) {
+    const f = 10 ** d;
     return Math.round(n * f) / f;
+}
+
+export function int(str) {
+    return +str;
 }
 
 // skip 'e' and 'i'!
@@ -24,7 +28,7 @@ function empty_string_to_undefined(val) {
  * @param {int} r - rounding to n digits
  * @return {*}
  */
-export function magic(args, rules, r=2) {
+export function magic(args, rules, r = 2) {
 
     let idx = 0;
 
@@ -50,6 +54,6 @@ export function magic(args, rules, r=2) {
     return args;
 }
 
-export async function amagic(args, rules, r=2){
+export async function amagic(args, rules, r = 2) {
     return magic(args, rules, r);
 }
