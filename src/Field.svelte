@@ -1,8 +1,9 @@
 <script>
     import {debouncer} from "./debounce";
     import {tweened} from "svelte/motion";
-    import {int} from "./magic.js";
-    import {elasticOut} from "svelte/easing";
+    import {float} from "./magic.js";
+    import {expoOut} from "svelte/easing";
+    import {round} from "./magic";
 
     export let input_value;
     export let calculated_value;
@@ -12,7 +13,7 @@
     let _input_value = input_value;
 
 
-    const debounce = debouncer(250);
+    const debounce = debouncer(200);
 
     $: {
         debounce(_ => {
@@ -22,11 +23,11 @@
 
     let animated = tweened(0, {
         duration: 1000,
-        easing: elasticOut,
+        easing: expoOut,
     });
 
     $: {
-        animated.set(int(calculated_value));
+        animated.set(float(calculated_value));
     }
 </script>
 
@@ -46,5 +47,5 @@
     <input id="{name}"
            type="number"
            bind:value={_input_value}
-           placeholder="{Math.round($animated)}">
+           placeholder="{round($animated, 2)}">
 </div>

@@ -10,8 +10,12 @@ export function round(n, d) {
     return Math.round(n * f) / f;
 }
 
-export function int(str) {
+export function float(str) {
     return +str;
+}
+
+export function int(str){
+    return Math.floor(float(str))
 }
 
 // skip 'e' and 'i'!
