@@ -38,6 +38,7 @@
 
     input {
         color: darkred;
+        max-width: 25vw;
     }
 </style>
 

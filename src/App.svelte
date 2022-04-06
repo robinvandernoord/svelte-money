@@ -46,8 +46,19 @@
 </script>
 
 <style>
-    button {
-        float: right;
+
+    @media (max-width: 825px) {
+        .buttons {
+            width: max-content;
+            margin: auto;
+            margin-bottom: 25px;
+        }
+    }
+
+    @media (min-width: 825px) {
+        .buttons {
+            float: right;
+        }
     }
 
     :global(body) {
@@ -71,7 +82,7 @@
 
 <Logo />
 
-<div>
+<div class="buttons">
     <button on:click={remove_value}>-</button>
     <button on:click={add_value}>+</button>
 </div>
