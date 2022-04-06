@@ -39,6 +39,13 @@
     input {
         color: darkred;
         max-width: 25vw;
+
+        transition: box-shadow 300ms;
+    }
+
+    input:focus {
+        outline: none;
+        box-shadow: 5px 5px darkgreen;
     }
 </style>
 

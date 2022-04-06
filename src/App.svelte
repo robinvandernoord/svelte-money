@@ -47,7 +47,7 @@
 
 <style>
 
-    @media (max-width: 825px) {
+    @media (max-width: 850px) {
         .buttons {
             width: max-content;
             margin: auto;
@@ -55,16 +55,37 @@
         }
     }
 
-    @media (min-width: 825px) {
+    @media (min-width: 850px) {
         .buttons {
             float: right;
+            margin-right: 20px;
         }
     }
 
+    button {
+        transition: box-shadow 400ms;
+        box-shadow: 3px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    button:hover {
+        box-shadow: 4px 4px rgba(0, 0, 0, 0.9);
+    }
+
+    button:active {
+        box-shadow: none;
+    }
+
     :global(body) {
-        background: url('https://trialandsuccess.nl/TaS/static/images/banner.png');
-        background-size: cover;
+        background-size: cover !important;
+        background: url('https://trialandsuccess.nl/TaS/static/images/banner.png') fixed;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    main {
         backdrop-filter: brightness(0.75);
+        min-width: 100vw;
+        min-height: 100vh;
     }
 
     hr {
@@ -78,25 +99,33 @@
         border-radius: 180px;
         margin: 5px;
     }
+
+    .padding-bottom {
+        padding-bottom: 50px;
+    }
 </style>
 
-<Logo />
+<main>
+    <Logo />
 
-<div class="buttons">
-    <button on:click={remove_value}>-</button>
-    <button on:click={add_value}>+</button>
-</div>
+    <div class="buttons">
+        <button on:click={remove_value}>-</button>
+        <button on:click={add_value}>+</button>
+    </div>
 
-<div>
-    {#each values as value}
-        <div>
-            <Group bind:values={value} />
-            <hr />
+    <div>
+        {#each values as value}
+            <div>
+                <Group bind:values={value} />
+                <hr />
+            </div>
+        {/each}
+    </div>
+
+
+    {#if values.length > 1}
+        <div class="padding-bottom">
+            <GroupReadonly values={sum} />
         </div>
-    {/each}
-</div>
-
-
-{#if values.length > 1}
-    <GroupReadonly values={sum} />
-{/if}
+    {/if}
+</main>
