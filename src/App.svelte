@@ -1,6 +1,8 @@
 <script>
     import Group from "./Group.svelte";
     import GroupReadonly from "./GroupReadonly.svelte";
+    import Center from "./Center.svelte";
+    import Logo from "./Logo.svelte";
 
     function generate_defaults() {
         // initial:
@@ -47,15 +49,41 @@
     button {
         float: right;
     }
+
+    :global(body) {
+        background: url('https://trialandsuccess.nl/TaS/static/images/banner.png');
+        background-size: cover;
+        backdrop-filter: brightness(0.75);
+    }
+
+    hr {
+        border: 1px dashed white;
+        border-top-width: 0;
+    }
+
+    button {
+        width: 40px;
+        height: 40px;
+        border-radius: 180px;
+        margin: 5px;
+    }
 </style>
 
-{#each values as value}
-    <Group bind:values={value} />
-    <hr />
-{/each}
+<Logo />
 
-<button on:click={remove_value}>-</button>
-<button on:click={add_value}>+</button>
+<div>
+    <button on:click={remove_value}>-</button>
+    <button on:click={add_value}>+</button>
+</div>
+
+<div>
+    {#each values as value}
+        <div>
+            <Group bind:values={value} />
+            <hr />
+        </div>
+    {/each}
+</div>
 
 
 {#if values.length > 1}

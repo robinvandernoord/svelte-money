@@ -1,6 +1,7 @@
 <script>
     import {magic, nerdamer} from './magic';
     import Field from "./Field.svelte";
+    import Center from "./Center.svelte";
     // import {spring} from "svelte/motion";
 
 
@@ -63,9 +64,10 @@
     p {
         color: darkred;
     }
+
 </style>
 
-<div>
+<Center>
     <Field grouped="1" bind:input_value={uren_per_dag} bind:calculated_value={_uren_per_dag} name="Uur per dag" />
     <Field grouped="1" bind:input_value={uren_per_week} bind:calculated_value={_uren_per_week} name="Uur per week" />
     <Field grouped="1" bind:input_value={dagen_per_week} bind:calculated_value={_dagen_per_week}
@@ -78,6 +80,6 @@
     <!--<Field bind:input_value={week} bind:calculated_value={_week} name="Per Week" />-->
     <Field grouped="1" bind:input_value={maand} bind:calculated_value={_maand} name="Per Maand" />
     <Field grouped="1" bind:input_value={jaar} bind:calculated_value={_jaar} name="Per Jaar" />
-</div>
+</Center>
 
 <p>{feedback}</p>
